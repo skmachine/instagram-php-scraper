@@ -73,8 +73,17 @@ class MediaProxy {
         }
 
         header("Content-Type: " . $mime_types[$ext]);
-        var_dump(getallheaders());
-        $this->guzzleClient->get($url, ['headers' => getallheaders()]);
+
+        $headers = [
+            'user-agent' => "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:94.0) Gecko/20100101 Firefox/94.0"
+        ];
+
+        //var_dump(getallheaders());
+        $response = $this->guzzleClient->get($url, ['headers' => $headers]);
+
+        header("Content-Type: " . $mime_types[$ext]);
+
+        echo $response->getBody() . '';
     }
 
     
