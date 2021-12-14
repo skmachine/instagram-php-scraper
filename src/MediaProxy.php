@@ -60,19 +60,19 @@ class MediaProxy {
         
         $ext = pathinfo($parsed['path'], PATHINFO_EXTENSION);
         
-        $good_ext = in_array($ext, ['mp4', 'jpg']);
+        $goodExt = in_array($ext, ['mp4', 'jpg']);
         
-        $mime_types = [
+        $mimeTypes = [
             'jpg' => 'image/jpeg',
             'mp4' => 'video/mp4'
         ];
         
-        if ((!$this->endsWith($parsed['host'], 'cdninstagram.com') && !$this->endsWith($parsed['host'], 'fbcdn.net')) || !$good_ext) {
+        if ((!$this->endsWith($parsed['host'], 'cdninstagram.com') && !$this->endsWith($parsed['host'], 'fbcdn.net')) || !$goodExt) {
             http_response_code(422);
             die('Please, provide correct URL to jpg/mp4 file');
         }
 
-        header("Content-Type: " . $mime_types[$ext]);
+        header("Content-Type: " . $mimeTypes[$ext]);
 
         $headers = [
             'user-agent' => "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:94.0) Gecko/20100101 Firefox/94.0"
@@ -81,8 +81,9 @@ class MediaProxy {
         //var_dump(getallheaders());
         $response = $this->guzzleClient->get($url, ['headers' => $headers]);
 
-        header("Content-Type: " . $mime_types[$ext]);
+        header("Content-Type: " . $mimeTypes[$ext]);
 
+        // @TODO: rewrite to streaming
         echo $response->getBody() . '';
     }
 
