@@ -5,7 +5,7 @@ require __DIR__ . '/../vendor/autoload.php';
 use InstagramScraper\Client;
 
 $client = new Client([
-        'rapidapi_key' => '01739a12edmsh958f4d2c881dd09p141969jsna12b0c7bbddf' // get your key on https://rapidapi.com/neotank/api/instagram130
+        'rapidapi_key' => 'YOUR-RAPIDAPI-KEY' // get your key on https://rapidapi.com/neotank/api/instagram130
     ]
 );
 
