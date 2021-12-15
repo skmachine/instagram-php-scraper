@@ -3,11 +3,17 @@ Simple solution to scrape Instagram.
 Allows to access public Instagram data. Uses retries and high quality proxy rotation so you don't have to worry about it.
 
 This solution uses cloud proxy service to access proxies.
+
+
+# Installation
 Get your API key on https://rapidapi.com/neotank/api/instagram130
+```
+composer require skmachine/instagram-php-scraper
+```
 
 # Examples of usage
 
-See full examples in /examples folder.
+See full working examples in /examples folder.
 
 ## Get user profile data
 ```php
