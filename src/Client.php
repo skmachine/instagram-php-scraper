@@ -25,6 +25,56 @@ class Client {
 
     }
 
+    /**
+     * Retrieve paginated medias for an account, by userid.
+     * $params = array(
+     *  'userid' 
+     *  'first'  (int) number of items to retrieve
+     *  'after' (string) pagination cursor
+     * )
+     */
+    public function getAccountMedias(array $params = []) {
+        if (!isset($params['userid'])) {
+            throw new \Exception('params[userid] is required!');
+        }
+
+        $response = $this->guzzleClient->get('account-medias', ['query' => $params]);
+
+        return json_decode($response->getBody(), true);
+    }
+
+    /**
+     * Retrieve username from userid handle.
+     * $params = array(
+     *  'userid' 
+     * )
+     */
+    public function getUsernameByID(array $params = []) {
+        if (!isset($params['userid'])) {
+            throw new \Exception('params[userid] is required!');
+        }
+
+        $response = $this->guzzleClient->get('username-by-id', ['query' => $params]);
+
+        return json_decode($response->getBody(), true);
+    }
+
+    /**
+     * Retrieve last 12 medias for an account, by username.
+     * $params = array(
+     *  'username' 
+     * )
+     */
+    public function getAccountFeed(array $params = []) {
+        if (!isset($params['username'])) {
+            throw new \Exception('params[username] is required!');
+        }
+
+        $response = $this->guzzleClient->get('account-feed', ['query' => $params]);
+
+        return json_decode($response->getBody(), true);
+    }
+
     public function getViaProxy(array $params = []) {
         if (!isset($params['url'])) {
             throw new \Exception('params[url] is required!');
