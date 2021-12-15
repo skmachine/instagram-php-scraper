@@ -1,6 +1,6 @@
 {
     "name": "skmachine/instagram-php-scraper",
-    "description": "Simple Instagram PHP scraper",
+    "description": "Simple Instagram PHP scraper and media proxy.",
     "type": "library",
     "require": {
         "guzzlehttp/guzzle": "^7.4"
